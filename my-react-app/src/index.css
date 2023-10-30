@@ -1,0 +1,14 @@
+  @import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@300&family=Dosis:wght@600&family=IBM+Plex+Sans+Arabic:wght@600&family=Open+Sans:wght@400;700&family=Rubik&display=swap');
+*{
+  font-family: 'Alexandria', sans-serif;
+font-family: 'Dosis', sans-serif;
+font-family: 'IBM Plex Sans Arabic', sans-serif;
+font-family: 'Open Sans', sans-serif;
+font-family: 'Rubik', sans-serif;
+}
+.border{
+  border: 1px solid red;
+}
+.border2{
+  border: 1px solid green;
+}
