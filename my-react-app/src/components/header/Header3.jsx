@@ -1,23 +1,38 @@
 import {
   Box,
   Container,
+  IconButton,
   ListItemIcon,
   ListItemText,
+  Stack,
   Typography,
   useTheme,
+  List,
+  ListItem,
+  ListItemButton,
+  Divider,
+  Drawer,
+  useMediaQuery,
 } from "@mui/material";
-import { useState } from "react";
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import Links from "./Links";
 
-import WindowIcon from "@mui/icons-material/Window";
-import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
 import {
   SportsEsportsOutlined,
   ElectricBikeOutlined,
   LaptopChromebookOutlined,
   MenuBookOutlined,
+  KeyboardArrowRight,
+  Window,
+  MenuOpen,
+  MaleOutlined,
+  AllInboxOutlined,
+  MailOutline,
+  InboxOutlined,
+  CloseTwoTone,
 } from "@mui/icons-material";
 
 const Header3 = () => {
@@ -32,6 +47,74 @@ const Header3 = () => {
 
   const theme = useTheme();
 
+  const [state, setState] = useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
+  });
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
+  };
+
+  const list = (anchor) => (
+    <Box
+      sx={{
+        width: "100vw",
+        height: "100vh",
+        position: "relative",
+      }}
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      <IconButton
+        onClick={toggleDrawer(anchor, false)}
+        sx={{
+          position: "absolute",
+          top: 0,
+          right: 20,
+          marginBottom: 2,
+        }}
+      >
+        <CloseTwoTone />
+      </IconButton>
+      <List>
+        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+          <ListItem key={text} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                {index % 2 === 0 ? <AllInboxOutlined /> : <MaleOutlined />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+      <List>
+        {["All mail", "Trash", "Spam"].map((text, index) => (
+          <ListItem key={text} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxOutlined /> : <MailOutline />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  );
+
   return (
     <Container
       sx={{
@@ -40,7 +123,9 @@ const Header3 = () => {
         justifyContent: "space-between",
         mt: 5,
       }}
+      height="fit-content"
     >
+      {/* left side   */}
       <Box>
         <Button
           id="basic-button"
@@ -53,7 +138,7 @@ const Header3 = () => {
             color: theme.palette.text.secondary,
           }}
         >
-          <WindowIcon />
+          <Window />
           <Typography
             sx={{
               padding: "0",
@@ -65,7 +150,7 @@ const Header3 = () => {
           </Typography>
           <Box flexGrow={1} />
 
-          <KeyboardArrowRightOutlinedIcon />
+          <KeyboardArrowRight />
         </Button>
         <Menu
           id="basic-menu"
@@ -114,6 +199,42 @@ const Header3 = () => {
           </MenuItem>
         </Menu>
       </Box>
+
+      <Stack direction={"row"}>
+        <div>
+          {useMediaQuery(`(max-width: 999px)`) && (
+            <IconButton onClick={toggleDrawer("up", true)}>
+              <MenuOpen></MenuOpen>
+            </IconButton>
+          )}
+          <div>
+            {["up"].map((anchor) => (
+              <React.Fragment key={anchor}>
+                <Drawer
+                  sx={{
+                    width: "100%",
+                  }}
+                  anchor={anchor}
+                  open={state[anchor]}
+                  onClose={toggleDrawer(anchor, false)}
+                >
+                  {list(anchor)}
+                </Drawer>
+              </React.Fragment>
+            ))}
+          </div>
+        </div>{" "}
+      </Stack>
+
+      {useMediaQuery(`(min-width: 1000px)`) && (
+        <>
+          <Links text="Home" />
+          <Links text="mega menu " />
+          <Links text="Full screen menu" />
+          <Links text="User profile" />
+          <Links text="Vendor profile" />
+        </>
+      )}
     </Container>
   );
 };
