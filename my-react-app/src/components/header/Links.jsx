@@ -36,6 +36,7 @@ const Links = ({ text }) => {
           left: "50%",
           transform: "translateX(-50%)",
           cursor: "pointer",
+          zIndex:99999
         }}
       >
         <Box aria-label="secondary mailbox folders">
