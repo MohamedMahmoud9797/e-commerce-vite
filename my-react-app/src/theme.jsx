@@ -40,6 +40,7 @@ export const ColorModeContext = createContext({
   toggleColorMode: () => {},
 });
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useMode = () => {
   const [mode, setMode] = useState(
     localStorage.getItem("mode") ? localStorage.getItem("mode") : "light"

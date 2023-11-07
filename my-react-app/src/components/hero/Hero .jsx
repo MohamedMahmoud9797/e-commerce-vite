@@ -1,68 +1,123 @@
-    
 // Import Swiper React components
 // eslint-disable-next-line no-unused-vars
-import React from 'react';
-
+import React from "react";
 
 // Import Swiper styles
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import {Grid,Container, Box } from '@mui/material';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { Grid, Container, Box, Typography, Button, Stack } from "@mui/material";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "./slider.css";
 
-
-
-const Hero  = () => {
+const Hero = () => {
   return (
-<Container sx={{mt:5,}} >
-<Grid container spacing={2} direction={"row"} className='border' sx={{mb:5}}>
-{/* left side grid item */}
-        <Grid item md={8} xs={12}>
-        <Swiper
-      pagination={{
-        dynamicBullets: true,
-      }}
-      className="mySwiper"
-      autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
-        modules={[Autoplay, Pagination, Navigation]}
-        navigation={true}
-    >
-      <SwiperSlide>
-    
-    <img src='../../../public/assstes/banner-15.jpg' />
-     </SwiperSlide>
-      <SwiperSlide>
-    
-    <img src='../../../public/assstes/banner-25.jpg' />
-     </SwiperSlide>
-   </Swiper>
+    <Box sx={{ backgroundColor: "#f5f5f5" }}>
+      <Container sx={{ mt: 5 }}>
+        <Grid container spacing={2} direction={"row"} sx={{ mb: 5 }}>
+          {/* left side grid item */}
+          <Grid item md={8} xs={12}>
+            <Swiper
+              pagination={{
+                dynamicBullets: true,
+              }}
+              className="mySwiper"
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay, Pagination, Navigation]}
+              navigation={true}
+              sx={{}}
+            >
+              <SwiperSlide position={"relative"}>
+                <img src="../../../public/assstes/banner-15.jpg" />
+                <Box
+                  className="border"
+                  sx={{
+                    position: "absolute",
+                    top: "20%",
+                    left: "40%",
+                    transform: "translate(-60%)",
+                    textAlign: "start",
+                    py: 4,
+                    textTransform: "uppercase",
+                    px: 2,
+                  }}
+                >
+                  <Typography variant="h5" sx={{ color: "#000" }}>
+                    LIFE STYLE COLLECTION FOR MEN{" "}
+                  </Typography>
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      fontWeight: "bold",
+                      mb: 2,
+                      textAlign: "start",
+                      color: "#000",
+                    }}
+                  >
+                    MEN{" "}
+                  </Typography>
+                  <Stack direction={"row"} spacing={1} alignItems={"center"}>
+                    <Typography variant="h6" sx={{ color: "#000" }}>
+                      sale up to{" "}
+                    </Typography>
+                    <Typography
+                      className="sale-percent"
+                      variant="h6"
+                      color={"red"}
+                    >
+                      30% off
+                    </Typography>
+                  </Stack>
+                  <Typography
+                    variant="h7"
+                    sx={{ fontSize: "15px", color: "#333" }}
+                  >
+                    get free shippig on order{" "}
+                  </Typography>
+                  <br />
+                  <Button display={"block"} variant="contained">
+                    Success
+                  </Button>
+                </Box>
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src="../../../public/assstes/banner-25.jpg" />
+              </SwiperSlide>
+            </Swiper>
+          </Grid>
+
+          {/* right  side grid item */}
+          <Grid item md={4}>
+            <Grid
+              xs={{
+                display: "flex",
+                direction: "row",
+                justifyContent: "space-between",
+              }}
+            >
+              <Box>
+                <img
+                  src="../../../public/assstes/banner-17.jpg"
+                  width={"100%"}
+                />
+              </Box>
+              <Box>
+                <img
+                  src="../../../public/assstes/banner-16.jpg"
+                  width={"100%"}
+                />
+              </Box>
+            </Grid>
+          </Grid>
         </Grid>
-        {/* right  side grid item */}
+        sssss
+      </Container>
+    </Box>
+  );
+};
 
-        <Grid item md={4}>
-      <Box>
-      <img src='../../../public/assstes/banner-17.jpg' />
-
-      </Box>
-      <Box>
-      <img src='../../../public/assstes/banner-16.jpg' />
-      
-
-      </Box>
-        </Grid>
-      
-      </Grid>
-
-sssss
-</Container>
-
-  )
-}
-
-export default Hero 
+export default Hero;
