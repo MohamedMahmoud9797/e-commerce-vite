@@ -5,20 +5,25 @@ import React from "react";
 // Import Swiper styles
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import { Grid, Container, Box, Typography, Button, Stack } from "@mui/material";
+import { Grid, Container, Box, Typography, Button, Stack, useTheme } from "@mui/material";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "./slider.css";
-
 const Hero = () => {
+  const theme = useTheme();
+  const sliderData = [
+    {text: "Men", image: "../../../public/assstes/banner-15.jpg"},
+    {text: "Women", image: "../../../public/assstes/banner-25.jpg"},
+  ]
+
   return (
-    <Box sx={{ backgroundColor: "#f5f5f5" }}>
+    <Box sx={{ backgroundColor: theme.palette.grey.main }}>
       <Container sx={{ mt: 5 }}>
         <Grid container spacing={2} direction={"row"} sx={{ mb: 5 }}>
           {/* left side grid item */}
           <Grid item md={8} xs={12}>
-            <Swiper
+            <Swiper 
               pagination={{
                 dynamicBullets: true,
               }}
@@ -30,9 +35,11 @@ const Hero = () => {
               modules={[Autoplay, Pagination, Navigation]}
               navigation={true}
               sx={{}}
+              
             >
-              <SwiperSlide position={"relative"}>
-                <img src="../../../public/assstes/banner-15.jpg" />
+            {sliderData.map((data) => (
+              <SwiperSlide key={data.text} position={"relative"} className="parent-slider" >
+              <img src={data.image} />
                 <Box
                   className="border"
                   sx={{
@@ -58,7 +65,7 @@ const Hero = () => {
                       color: "#000",
                     }}
                   >
-                    MEN{" "}
+                    {data.text}
                   </Typography>
                   <Stack direction={"row"} spacing={1} alignItems={"center"}>
                     <Typography variant="h6" sx={{ color: "#000" }}>
@@ -84,9 +91,7 @@ const Hero = () => {
                   </Button>
                 </Box>
               </SwiperSlide>
-              <SwiperSlide>
-                <img src="../../../public/assstes/banner-25.jpg" />
-              </SwiperSlide>
+            ))}
             </Swiper>
           </Grid>
 
