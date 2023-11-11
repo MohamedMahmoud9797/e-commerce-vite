@@ -24,7 +24,7 @@
   
   @media (max-width: 600px) {
     
-    .parent-slider img {
+    .parent-slider  img {
       display: none;
   
     }

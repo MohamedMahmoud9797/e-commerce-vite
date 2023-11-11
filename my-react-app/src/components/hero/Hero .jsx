@@ -4,7 +4,7 @@ import React from "react";
 
 // Import Swiper styles
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import {  Pagination, } from "swiper/modules";
 import { Grid, Container, Box, Typography, Button, Stack, useTheme } from "@mui/material";
 // Import Swiper styles
 import "swiper/css";
@@ -23,86 +23,106 @@ const Hero = () => {
         <Grid container spacing={2} direction={"row"} sx={{ mb: 5 }}>
           {/* left side grid item */}
           <Grid item md={8} xs={12}>
-            <Swiper 
-              pagination={{
-                dynamicBullets: true,
-              }}
-              className="mySwiper"
-              autoplay={{
-                delay: 2500,
-                disableOnInteraction: false,
-              }}
-              modules={[Autoplay, Pagination, Navigation]}
-              navigation={true}
-              sx={{}}
-              
-            >
-            {sliderData.map((data) => (
-              <SwiperSlide key={data.text} position={"relative"} className="parent-slider" >
-              <img src={data.image} />
+          <Swiper
+          loop={true}
+          pagination={{
+            dynamicBullets: true,
+          }}
+          modules={[Pagination]}
+          className="mySwiper"
+        >
+          {sliderData.map((item) => {
+            return (
+              <SwiperSlide key={item.link} className="parent-slider">
+                <img src={item.image} alt="" />
                 <Box
-                  className="border"
                   sx={{
-                    position: "absolute",
-                    top: "20%",
-                    left: "40%",
-                    transform: "translate(-60%)",
-                    textAlign: "start",
-                    py: 4,
-                    textTransform: "uppercase",
-                    px: 2,
+                    [theme.breakpoints.up("sm")]: {
+                      position: "absolute",
+                      left: "10%",
+                      textAlign: "left",
+                    },
+
+                    [theme.breakpoints.down("sm")]: {
+                      pt: 4,
+                      pb: 6,
+                    },
                   }}
                 >
-                  <Typography variant="h5" sx={{ color: "#000" }}>
-                    LIFE STYLE COLLECTION FOR MEN{" "}
-                  </Typography>
                   <Typography
-                    variant="h3"
                     sx={{
-                      fontWeight: "bold",
-                      mb: 2,
-                      textAlign: "start",
-                      color: "#000",
+                      color: "#222",
                     }}
+                    variant="h5"
                   >
-                    {data.text}
+                    LIFESTYLE COLLECTION
                   </Typography>
-                  <Stack direction={"row"} spacing={1} alignItems={"center"}>
-                    <Typography variant="h6" sx={{ color: "#000" }}>
-                      sale up to{" "}
+
+                  <Typography
+                    sx={{
+                      color: "#222",
+                      fontWeight: 500,
+                      my: 1,
+                    }}
+                    variant="h3"
+                  >
+                    {item.text}
+                  </Typography>
+
+                  <Stack
+                    sx={{
+                      justifyContent: { xs: "center", sm: "left" },
+                    }}
+                    direction={"row"}
+                    alignItems={"center"}
+                  >
+                    <Typography color={"#333"} mr={1} variant="h4">
+                      SALE UP TO
                     </Typography>
-                    <Typography
-                      className="sale-percent"
-                      variant="h6"
-                      color={"red"}
-                    >
-                      30% off
+                    <Typography color={"#D23F57"} variant="h4">
+                      30% OFF
                     </Typography>
                   </Stack>
                   <Typography
-                    variant="h7"
-                    sx={{ fontSize: "15px", color: "#333" }}
+                    sx={{
+                      color: "#000",
+                      fontWeight: 300,
+                      my: 1,
+                    }}
+                    variant="body1"
                   >
-                    get free shippig on order{" "}
+                    Get Free Shipping on orders over $99.00
                   </Typography>
-                  <br />
-                  <Button display={"block"} variant="contained">
-                    Success
+
+                  <Button
+                    sx={{
+                      px: 5,
+                      py: 1,
+                      mt: 2,
+                      backgroundColor: "#222",
+                      boxShadow: "0px 4px 16px rgba(43, 52, 69, 0.1)",
+                      color: "#fff",
+                      borderRadius: "1px",
+                      "&:hover": {
+                        bgcolor: "#151515",
+                        boxShadow: "0px 4px 16px rgba(43, 52, 69, 0.1)",
+                      },
+                    }}
+                    variant="contained"
+                  >
+                    shop now
                   </Button>
                 </Box>
               </SwiperSlide>
-            ))}
-            </Swiper>
+            );
+          })}
+        </Swiper>
+
           </Grid>
 
           {/* right  side grid item */}
           <Grid item md={4}>
-            <Grid
-              xs={{
-                display: "flex",
-                direction: "row",
-                justifyContent: "space-between",
-              }}
+            <Grid   
             >
               <Box>
                 <img
